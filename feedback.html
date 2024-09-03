@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Feedback</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            color: #0044cc;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #cc0000;
+        }
+        .form-group input[type="text"], .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .rating {
+            display: flex;
+            justify-content: space-around;
+            max-width: 200px;
+            margin: 0 auto 20px;
+        }
+        .rating input {
+            display: none;
+        }
+        .rating label {
+            font-size: 2em;
+            color: #ccc;
+            cursor: pointer;
+        }
+        .rating input:checked ~ label {
+            color: #cc0000;
+        }
+        .rating input:checked + label ~ label {
+            color: #ccc;
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #0044cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="header">Course Feedback</h1>
+        <form method="POST">
+            <div class="form-group">
+                <label for="rating">Rating:</label>
+                <div class="rating">
+                    <input type="radio" id="star5" name="rating" value="5" />
+                    <label for="star5">&#9733;</label>
+                    <input type="radio" id="star4" name="rating" value="4" />
+                    <label for="star4">&#9733;</label>
+                    <input type="radio" id="star3" name="rating" value="3" />
+                    <label for="star3">&#9733;</label>
+                    <input type="radio" id="star2" name="rating" value="2" />
+                    <label for="star2">&#9733;</label>
+                    <input type="radio" id="star1" name="rating" value="1" />
+                    <label for="star1">&#9733;</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="comment">Comment:</label>
+                <textarea id="comment" name="comment" rows="4" placeholder="Enter your feedback here..."></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Submit Feedback</button>
+        </form>
+    </div>
+</body>
+</html>
