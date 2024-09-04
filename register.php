@@ -5,38 +5,29 @@ $db_username = "Mithran13";
 $db_password = "Mithran01";
 $dbname = "mmuecho";
 
-
 $conn = new mysqli($servername, $db_username, $db_password, $dbname);
-
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-   
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    
     $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
     $stmt->bind_param("sss", $username, $email, $hashed_password);
 
-    
     if ($stmt->execute()) {
         $message = "Registration successful!";
     } else {
         $message = "Error: " . $stmt->error;
     }
 
-    
     $stmt->close();
-
-    
     $conn->close();
 }
 ?>
@@ -48,56 +39,100 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <style>
-        body, h1, h2, p {
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             line-height: 1.6;
-            background-color: #f0f0f0; 
-            color: #333; 
+            background-color: #1a1a1a; 
+            color: #e0e0e0; 
         }
 
         .container {
-            width: 80%;
+            width: 90%;
+            max-width: 1200px;
             margin: 0 auto;
             overflow: hidden;
+        }
+
+        header {
+            background: #000; 
+            color: #00bfff; 
+            padding: 1.5rem 0;
+            position: relative;
+            border-bottom: 2px solid #00bfff; 
+        }
+
+        header h1 {
+            float: left;
+            margin-left: 1.5rem;
+            font-size: 2rem;
+        }
+
+        nav {
+            float: right;
+            margin-right: 1.5rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: #00bfff; 
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ffffff; 
         }
 
         .register {
             padding: 2rem 0;
             text-align: center;
-            background: #e6f2ff; 
+            background: #333; 
         }
 
         .register h2 {
-            color: #003366; 
+            color: #00bfff; 
         }
 
         form {
             max-width: 500px;
             margin: 0 auto;
-            background: #ffffff; 
-            padding: 1rem;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+            background: #444; 
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); 
+            transition: box-shadow 0.3s ease;
+        }
+
+        form:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6); 
         }
 
         form label {
             display: block;
             margin-bottom: 0.5rem;
-            color: #333; 
+            color: #e0e0e0; 
         }
 
         form input {
             width: 100%;
-            padding: 0.5rem;
+            padding: 0.75rem;
             margin-bottom: 1rem;
-            border: 1px solid #007bff; 
-            background: #f9f9f9; 
-            color: #333; 
+            border: 1px solid #555; 
+            border-radius: 4px;
+            background: #333; 
+            color: #e0e0e0; 
         }
 
         .button-group {
@@ -107,28 +142,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         form button, .home-button {
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px; 
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, transform 0.3s ease;
             text-align: center;
             text-decoration: none;
-            color: #fff;
-            background: #007bff; /* Same color for both buttons */
+            color: #ffffff;
+            background: #00bfff; /* Same color for both buttons */
             border: none;
+            font-size: 1.1rem;
         }
 
         form button:hover, .home-button:hover {
-            background: #0056b3; /* Darker shade on hover */
+            background: #ffffff; 
+            color: #00bfff; 
+            transform: scale(1.05); 
         }
 
         .message {
             margin-top: 1rem;
             font-weight: bold;
         }
+
+        footer {
+            background: #000; 
+            color: #00bfff; 
+            text-align: center;
+            padding: 1.5rem 0; 
+            border-top: 2px solid #00bfff; 
+        }
     </style>
 </head>
 <body>
+    <header>
+        <div class="container">
+            <h1>MMU Echo</h1>
+            <nav>
+                <ul>
+                    <li><a href="FrontPage.html">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="login.php">Login</a></li>
+                    <li><a href="register.php">Register</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
     <section class="register">
         <div class="container">
             <h2>Register</h2>
@@ -144,11 +204,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
                 <div class="button-group">
                     <button type="submit">Register</button>
-                    <a href="FrontPage.html" class="home-button">Home</a>
+                    <a href="index.html" class="home-button">Home</a>
                 </div>
             </form>
             <?php if (isset($message)) { echo "<p class='message'>$message</p>"; } ?>
         </div>
     </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 MMU Echo. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
