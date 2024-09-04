@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MMU Echo</title>
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #1a1a1a; 
+            color: #e0e0e0; 
+        }
+
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        
+        header {
+            background: #000; 
+            color: #00bfff; 
+            padding: 1.5rem 0;
+            position: relative;
+            border-bottom: 2px solid #00bfff; 
+        }
+
+        header h1 {
+            float: left;
+            margin-left: 1.5rem;
+            font-size: 2rem;
+        }
+
+        nav {
+            float: right;
+            margin-right: 1.5rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: #00bfff; 
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ffffff; 
+        }
+
+        
+        .hero {
+            background: #000; 
+            color: #ffffff;
+            padding: 4rem 0; 
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero .logo {
+            max-width: 350px; 
+            margin: 0 auto 1.5rem; 
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .hero .logo:hover {
+            transform: scale(1.1); 
+        }
+
+        .hero h2 {
+            margin-bottom: 1rem;
+            font-size: 2.5rem; 
+            font-weight: 700;
+        }
+
+        .hero p {
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+        }
+
+        .hero .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: #00bfff; 
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px; 
+            transition: background 0.3s ease, transform 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .hero .btn:hover {
+            background: #ffffff; 
+            color: #00bfff; 
+            transform: scale(1.05); 
+        }
+
+        
+        section {
+            padding: 3rem 0; 
+            text-align: center;
+        }
+
+        section h2 {
+            color: #00bfff; 
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        
+        form {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #333; 
+            padding: 2.5rem; 
+            border-radius: 8px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); 
+            transition: box-shadow 0.3s ease;
+        }
+
+        form:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6); 
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #e0e0e0; 
+        }
+
+        form input {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #555; 
+            border-radius: 4px;
+            background: #444; 
+            color: #ece9e9; 
+        }
+
+        form button {
+            padding: 0.75rem 1.5rem;
+            background: #00bfff; 
+            color: #ffffff;
+            border: none;
+            border-radius: 8px; 
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        form button:hover {
+            background: #ffffff; 
+            color: #00bfff; 
+            transform: scale(1.05); 
+        }
+
+        
+        footer {
+            background: #000; 
+            color: #00bfff; 
+            text-align: center;
+            padding: 1.5rem 0; 
+            border-top: 2px solid #00bfff; 
+        }
+
+        
+        @media (max-width: 768px) {
+            header h1 {
+                float: none;
+                text-align: center;
+                margin: 0;
+                font-size: 1.5rem;
+            }
+
+            nav {
+                float: none;
+                text-align: center;
+                margin: 1rem 0;
+            }
+
+            nav ul {
+                padding: 0;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav ul li {
+                display: block;
+                margin: 0;
+            }
+
+            .hero .logo {
+                max-width: 200px; 
+            }
+
+            .hero .btn {
+                padding: 0.5rem 1rem;
+                font-size: 1rem;
+            }
+
+            form {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>MMU Echo</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    
+                    <li><a href="login.php">Login</a></li>
+                    <li><a href="register.php">Register</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <img src="https://cdn.dribbble.com/users/959248/screenshots/18277942/media/112c109026356162c4acb46a49627971.jpg" alt="MMU Echo Logo" class="logo"> <!-- Placeholder for logo -->
+            <h2>Welcome to MMU Echo</h2>
+            <p>Your one-stop solution for the latest updates in MMU.</p>
+            <a href="register.php" class="btn" id="getStartedBtn">Get Started</a>
+        </div>
+    </section>
+
+    <section id="about" class="info">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>MMU Echo is your platform to voice your thoughts and feedback about various aspects of university life in MMU. Whether it's about a recent lecture, campus facilities, or general suggestions, this is the place where your opinions matter. Leave us comments on specific topics or general feedback. You can also view comments from other students to see how their experiences compare to yours. It's a great way to gauge the overall sentiment and find common areas of interest or concern. Use our easy to use dropdown menu to filter comments by topic.</p>
+        </div>
+    </section>
+
+    <section id="courses" class="courses">
+        <div class="container">
+            
+            
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 MMU Echo. All rights reserved.</p>
+        </div>
+    </footer>
+
+    
+    <script>
+        function adjustButtonSize() {
+            const btn = document.getElementById('getStartedBtn');
+            if (window.innerWidth < 768) {
+                btn.style.fontSize = '1rem';
+                btn.style.padding = '0.5rem 1rem';
+            } else {
+                btn.style.fontSize = '1.1rem';
+                btn.style.padding = '0.75rem 1.5rem';
+            }
+        }
+
+        
+        adjustButtonSize();
+
+        
+        window.addEventListener('resize', adjustButtonSize);
+    </script>
+</body>
+</html>
