@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Review</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .message {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Delete Review</h1>
+        <form action="delete_review.php" method="GET">
+            <label for="reviewId">Review ID:</label>
+            <input type="number" id="reviewId" name="id" required>
+            <button type="submit">Delete Review</button>
+        </form>
+
+        <!-- Message area for showing success or error messages -->
+        <?php if (isset($_GET['status'])): ?>
+            <div class="message <?= $_GET['status'] === 'success' ? 'success' : 'error' ?>">
+                <?= htmlspecialchars($_GET['message']) ?>
+            </div>
+        <?php endif; ?>
+    </div>
+</body>
+</html>
