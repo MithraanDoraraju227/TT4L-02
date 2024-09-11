@@ -1,22 +1,20 @@
 <?php
+session_start(); // Start the session to access session variables
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
 
 $servername = "localhost";
 $db_username = "Mithran13";
 $db_password = "Mithran01";
 $dbname = "mmuecho";
 
-
 $conn = new mysqli($servername, $db_username, $db_password, $dbname);
-
 
 if ($conn->connect_error) {
     die(json_encode(["status" => "error", "message" => "Connection failed: " . $conn->connect_error]));
 }
-
 
 $response = [];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -24,12 +22,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $comment = isset($_POST['comment']) ? $_POST['comment'] : '';
     $topic = isset($_POST['topic']) ? $_POST['topic'] : '';
 
+    // Fetch the username from the session
+    $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest';
+
     if ($rating >= 1 && $rating <= 5 && !empty($comment) && !empty($topic)) {
-        $stmt = $conn->prepare("INSERT INTO comments (rating, comment, topic) VALUES (?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO comments (rating, comment, topic, username) VALUES (?, ?, ?, ?)");
         if ($stmt === false) {
             $response = ["status" => "error", "message" => "Prepare failed: " . $conn->error];
         } else {
-            $stmt->bind_param("iss", $rating, $comment, $topic);
+            $stmt->bind_param("isss", $rating, $comment, $topic, $username);
             if ($stmt->execute()) {
                 $response = ["status" => "success", "message" => "Comment submitted successfully!"];
             } else {
@@ -44,6 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $conn->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -240,12 +242,12 @@ button[type="submit"]:hover {
         <select name="topic" required>
             <option value="" disabled selected>Select a topic</option>
             <option value="FOM">FOM</option>
-            <option value="Course Content">FCI</option>
-            <option value="Instructor">FCA</option>
-            <option value="Facilities">FAC</option>
-            <option value="Other">FOE</option>
-            <option value="Other">FCM</option>
-            <option value="Other">LECTURERS</option>
+            <option value="FCI">FCI</option>
+            <option value="FCA">FCA</option>
+            <option value="FAC">FAC</option>
+            <option value="FOE">FOE</option>
+            <option value="FCM">FCM</option>
+            <option value="LECTURERS">LECTURERS</option>
         </select>
         <textarea name="comment" placeholder="Enter your comment here..." required></textarea>
         <button type="submit">Submit</button>
