@@ -1,0 +1,55 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+}
+
+ul {                                                     
+    list-style: none;
+    background: black;
+
+}
+
+ul li{                                                    
+    display: inline-block;
+    position: relative; 
+}
+
+ul li a {                                                 
+    display: block;
+    padding: 20px 50px;
+    color: white;
+    text-decoration: none;
+    text align: center;
+    font-size: 15px;
+    padding: 20px 30px;
+}
+
+ul li ul.dropdown li {
+    display: block;
+    position: center;
+    
+}
+
+ul li ul.dropdown {
+    width: 100%;
+    background: black;
+    position: absolute;
+    z-index: 999;
+    display: none;
+}
+
+ul li a:hover {
+    background: gray;
+}
+ul li:hover ul.dropdown {
+    display: block;
+}
+
+div h2 {
+    padding-left: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: white
+}
