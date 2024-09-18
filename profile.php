@@ -344,23 +344,23 @@ $conn->close();
             <?php endif; ?>
         </div>
     
-        <form id="commentForm" method="POST">
-            <div class="filter-bar">
-                <label for="topic">Filter by Topic:</label>
-                <select name="topic" id="topic" onchange="this.form.submit()">
-                    <option value="">--Select a topic--</option>
-                    <option value="Other" <?php if ($selectedTopic === 'Other') echo 'selected'; ?>>Other</option>
-                    <option value="FCI" <?php if ($selectedTopic === 'FCI') echo 'selected'; ?>>FCI</option>
-                    <option value="FOM" <?php if ($selectedTopic === 'FOM') echo 'selected'; ?>>FOM</option>
-                    <option value="FCA" <?php if ($selectedTopic === 'FCA') echo 'selected'; ?>>FCA</option>
-                    <option value="FAC" <?php if ($selectedTopic === 'FAC') echo 'selected'; ?>>FAC</option>
-                    <option value="FOE" <?php if ($selectedTopic === 'FOE') echo 'selected'; ?>>FOE</option>
-                    <option value="FCM" <?php if ($selectedTopic === 'FCM') echo 'selected'; ?>>FCM</option>
-                    <option value="LECTURERS" <?php if ($selectedTopic === 'LECTURERS') echo 'selected'; ?>>LECTURERS</option>
-                    
-                </select>
-            </div>
-        </form>
+        <form id="commentForm" method="GET" action="comments.php">
+    <div class="filter-bar">
+        <label for="topic">Filter by Topic:</label>
+        <select name="topic" id="topic" onchange="this.form.submit()">
+            <option value="">--Select a topic--</option>
+            <option value="Other" <?php if ($selectedTopic === 'Other') echo 'selected'; ?>>Other</option>
+            <option value="FCI" <?php if ($selectedTopic === 'FCI') echo 'selected'; ?>>FCI</option>
+            <option value="FOM" <?php if ($selectedTopic === 'FOM') echo 'selected'; ?>>FOM</option>
+            <option value="FCA" <?php if ($selectedTopic === 'FCA') echo 'selected'; ?>>FCA</option>
+            <option value="FAC" <?php if ($selectedTopic === 'FAC') echo 'selected'; ?>>FAC</option>
+            <option value="FOE" <?php if ($selectedTopic === 'FOE') echo 'selected'; ?>>FOE</option>
+            <option value="FCM" <?php if ($selectedTopic === 'FCM') echo 'selected'; ?>>FCM</option>
+            <option value="LECTURERS" <?php if ($selectedTopic === 'LECTURERS') echo 'selected'; ?>>LECTURERS</option>
+        </select>
+    </div>
+</form>
+
 
 
         <?php if ($selectedTopic): ?>
